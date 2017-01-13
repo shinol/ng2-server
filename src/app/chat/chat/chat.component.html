@@ -1,0 +1,28 @@
+<h1>Apollo Sample Chat</h1>
+
+<div class="left">
+  <ul>
+    <li *ngFor="let channel of channels"
+        [ngClass]="{'selected': channel._id === channelId}"
+        (click)="onSelectChannel(channel)">
+      {{channel.name}}
+    </li>
+  </ul>
+</div>
+<div class="right">
+  <ul>
+    <li *ngFor="let message of messages">
+      <p>
+        <span class="name"><em>{{message.userName}}</em></span> 
+        <span class="timestamp">{{message.timestamp | calendar}}</span>
+      </p>
+      <p>{{message.content}}</p>
+    </li>
+  </ul>
+
+  <form [formGroup]="messageForm" (ngSubmit)="onSendMessage()">
+    <input formControlName="message" placeholder="Press enter to send"/>
+  </form>
+</div>
+
+
