@@ -5,6 +5,8 @@ import { Component,
   Output, 
   EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Channel } from '../models/channel.model';
+
 
 
 

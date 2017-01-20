@@ -4,11 +4,11 @@ import { ChatComponent } from '../chat/chat/chat.component';
 
 export const routes: Routes = [
     {
-        path: 'channel',
+        path: 'channel/:name',
         component: ChatComponent
     },
     {
-        path: '**',
-        redirectTo: 'channel'
+        path: '*',
+        redirectTo: 'channel/general'
     }
 ];

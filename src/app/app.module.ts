@@ -12,6 +12,7 @@ import { ChatAreaBottomComponent } from './chat/chat-area-bottom/chat-area-botto
 import { ChannelListComponent } from './chat/channel-list/channel-list.component';
 import { ChatAreaDialogComponent } from './chat/chat-area-dialog/chat-area-dialog.component';
 import { routes } from './routes/app.routes';
+import { ChannelHeaderComponent } from './chat/channel-header/channel-header.component';
 
 
 
@@ -23,6 +24,7 @@ import { routes } from './routes/app.routes';
     ChatAreaBottomComponent,
     ChannelListComponent,
     ChatAreaDialogComponent,
+    ChannelHeaderComponent,
   ],
   imports: [
     BrowserModule,

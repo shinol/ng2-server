@@ -24,6 +24,7 @@ export class ChatService {
 
   channel: Channel;
 
+
   constructor() { }
 
   getChannels(): void {

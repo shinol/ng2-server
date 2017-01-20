@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Message } from '../models/chat.model';
 import { Channel } from '../models/channel.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChatService } from '../services/chat.service';
-
-
-
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'my-chat',
@@ -13,21 +12,33 @@ import { ChatService } from '../services/chat.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  messageForm: FormGroup;
-  channelId: string = '0';
+  subsParams: Subscription;
 
   constructor(
-    private fb: FormBuilder, 
-    private chatService: ChatService
-  ) { }
+    private chatService: ChatService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.chatService.getChannels();
-    this.chatService.getMessages('general');
 
-    this.messageForm = this.fb.group({
-      message: ['', Validators.required]
+    this.subsParams = this.route.params.subscribe(params => {
+      const channelName = params['name'];
+      this.chatService.getMessages(channelName);
     });
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        console.log(event);
+        // this.onSelectChannel(this.chatService.channel);
+      }
+    });
+
+  }
+
+  ngOnDestroy() {
+    this.subsParams.unsubscribe();
   }
 
   onSendMessage(event) {
@@ -36,6 +47,7 @@ export class ChatComponent implements OnInit {
 
   onSelectChannel(channel: Channel) {
     this.chatService.selectChannel(channel);
+    this.router.navigate(['/channel', channel.name]);
   }
 
 }
