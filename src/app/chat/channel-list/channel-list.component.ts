@@ -1,4 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, 
+  OnInit, 
+  ChangeDetectionStrategy,
+  Input, 
+  Output, 
+  EventEmitter } from '@angular/core';
 
 import { Channel } from '../models/channel.model';
 
@@ -6,7 +11,8 @@ import { Channel } from '../models/channel.model';
 @Component({
   selector: 'my-channel-list',
   templateUrl: './channel-list.component.html',
-  styleUrls: ['./channel-list.component.css']
+  styleUrls: ['./channel-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChannelListComponent implements OnInit {
 
