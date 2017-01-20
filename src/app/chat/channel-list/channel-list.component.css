@@ -1,0 +1,8 @@
+    li {
+      cursor: pointer;
+      margin: 0 0 .5rem 0;
+    }
+
+    .selected {
+      background-color: #1a64cb;
+    }

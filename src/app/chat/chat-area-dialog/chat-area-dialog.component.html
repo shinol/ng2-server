@@ -1,0 +1,7 @@
+<div class="wrapper">
+
+  <p *ngFor="let message of messages">
+    <em class="name">{{message.userName}}</em><span class="timestamp">::{{message.timestamp | calendar}}</span> {{message.content}}
+  </p>
+
+</div>

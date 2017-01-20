@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let channel of channels"
+      [ngClass]="{'selected': channel._id === channelId}"
+      (click)="onSelectChannel(channel)">
+    {{channel.name}}
+  </li>
+</ul>
