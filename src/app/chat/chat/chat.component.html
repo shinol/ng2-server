@@ -1,14 +1,24 @@
-<h1>Apollo Sample Chat</h1>
-
 <div class="left">
+  <my-channel-header
+    [name]="(profileModel$ | async)?.name"
+    (goProfile)="onGoProfile()">
+  </my-channel-header>
+  <hr>
+  <my-channel-add
+    (addChannel)="onAddChannel($event)">
+  </my-channel-add>
   <my-channel-list
     [channels]="chatService.channels"
     [channelId]="chatService.channel?._id"
     (selectChannel)="onSelectChannel($event)">
   </my-channel-list>
+
 </div>
 
 <div class="right">
+  <my-chat-area-header
+    [channelName]="chatService.channel?.name">
+  </my-chat-area-header>
   <my-chat-area-dialog
     [messages]="chatService.messages">
   </my-chat-area-dialog>

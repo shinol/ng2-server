@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Message } from '../models/chat.model';
 import { Channel } from '../models/channel.model';
 
+import { ProfileService } from './profile.service';
+
+
 @Injectable()
 export class ChatService {
 
@@ -25,7 +28,9 @@ export class ChatService {
   channel: Channel;
 
 
-  constructor() { }
+  constructor(
+    private profileService: ProfileService
+  ) { }
 
   getChannels(): void {
     // fake API, get channel data from db
@@ -61,8 +66,8 @@ export class ChatService {
     const message = {
       _id: String(this.messageDb.length),
       channelId,
-      userId: '0',
-      userName: 'Jack',
+      userId: this.profileService.currentUser._id,
+      userName: this.profileService.currentUser.name,
       content: messageContent,
       timestamp: new Date()
     };
@@ -71,6 +76,17 @@ export class ChatService {
 
     // fake API, write message data to the database
     this.messageDb = [...this.messageDb, message];
+  }
+
+  addChannel(name: string) {
+    const nChannel: Channel = {
+      _id: this.channelsDb.length.toString(),
+      name
+    };
+
+    this.channels = [...this.channels, nChannel];
+
+    this.channelsDb = [...this.channelsDb, nChannel];
   }
 
 

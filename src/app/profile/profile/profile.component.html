@@ -1,0 +1,4 @@
+<my-info
+  [name]="(profileModel$ | async)?.name"
+  (updateProfile)="onUpdateProfile($event)">
+</my-info>

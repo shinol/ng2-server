@@ -1,0 +1,5 @@
+<form [formGroup]="profileForm" (ngSubmit)="onUpdateProfile()">
+  <label>Name</label>
+  <input formControlName="name" placeholder="name" />
+  <button type="submit">Save changes</button>
+</form>
